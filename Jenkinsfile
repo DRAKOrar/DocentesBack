@@ -10,21 +10,24 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh './mvnw clean install'
             }
         }
+
         stage('Test') {
             steps {
-                sh 'mvn clean test'
+                sh './mvnw clean test'
             }
         }
     }
+
     post {
         success {
-            echo 'Pipeline finalizado exitosamente.'
+            echo '✅ Pipeline finalizado exitosamente.'
         }
         failure {
-            echo 'Falló una etapa del pipeline.'
+            echo '❌ Falló una etapa del pipeline.'
         }
     }
 }
+    
