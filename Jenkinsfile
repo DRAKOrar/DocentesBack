@@ -1,42 +1,17 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven 3.9.4'
-    }
-
     stages {
-        stage('Checkout') {
+        stage('Clonar Repo') {
             steps {
-                git url: 'https://github.com/DRAKOrar/DocentesBack.git', branch: 'main'
+                git branch: 'main', url: 'https://github.com/DRAKOrar/DocentesBack.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh './mvnw clean compile'
+                sh 'mvn clean package'
             }
-        }
-
-        stage('Test') {
-            steps {
-                sh './mvnw test'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                sh './mvnw package'
-            }
-        }
-    }
-
-    post {
-        success {
-            echo '✅ Pipeline finalizado exitosamente.'
-        }
-        failure {
-            echo '❌ Falló una etapa del pipeline.'
         }
     }
 }
