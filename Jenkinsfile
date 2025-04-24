@@ -10,12 +10,14 @@ pipeline {
 
         stage('Build') {
             steps {
+                sh 'chmod +x mvnw'
                 sh './mvnw clean install'
             }
         }
 
         stage('Test') {
             steps {
+                sh 'chmod +x mvnw'
                 sh './mvnw clean test'
             }
         }
@@ -30,4 +32,3 @@ pipeline {
         }
     }
 }
-    
