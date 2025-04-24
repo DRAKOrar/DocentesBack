@@ -19,4 +19,12 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            echo 'Pipeline finalizado exitosamente.'
+        }
+        failure {
+            echo 'Falló una etapa del pipeline.'
+        }
+    }
 }
