@@ -40,7 +40,7 @@ class PagoServiceImplTest {
 		PagoResponse response = pagoService.calcularPago(request);
 
 		// Assert
-		assertEquals(450000.0, response.getSalarioBruto());
+		assertEquals(460000.0, response.getSalarioBruto());
 		assertEquals(36800.0, response.getDescuentoParafiscales());
 		assertEquals(423200.0, response.getSalarioNeto());
 
