@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar Repo') {
+            steps {
+                git branch: 'main', url: 'https://github.com/DRAKOrar/DocentesBack.git'
+            }
+        }
+
+        stage('Compilar') {
+            steps {
+                sh './mvnw clean install'
+            }
+        }
+
+        stage('Desplegar') {
+            steps {
+                sh 'nohup java -jar target/*.jar &'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Servidor desplegado.'
+        }
+        failure {
+            echo 'Falló el despliegue.'
+        }
+    }
+}
